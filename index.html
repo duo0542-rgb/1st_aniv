@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サポメンのみなさんへ — 2025年5月同期 1st Anniversary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Kaisei+Decol:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#fffdf7;color:#2d2a26;overflow-x:hidden}
+
+/* Hero */
+.hero{position:relative;background:linear-gradient(160deg,#e8f7ff 0%,#fff8e8 50%,#ffe8f0 100%);padding:72px 24px 88px;text-align:center;overflow:hidden}
+.hero-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bubble{position:absolute;border-radius:50%;opacity:0.18}
+.b1{width:140px;height:140px;background:#4FC3F7;top:-30px;left:-40px}
+.b2{width:90px;height:90px;background:#FF7043;top:20px;right:8%}
+.b3{width:180px;height:180px;background:#81C784;bottom:-50px;right:-30px}
+.b4{width:70px;height:70px;background:#FFB74D;bottom:20px;left:12%}
+.b5{width:100px;height:100px;background:#CE93D8;top:35%;left:3%}
+.confetti{position:absolute;width:9px;height:9px;border-radius:2px;animation:fall 5s linear infinite}
+.c1{background:#FF7043;top:-10px;left:15%;animation-delay:0s}
+.c2{background:#4FC3F7;top:-10px;left:35%;animation-delay:1s}
+.c3{background:#81C784;top:-10px;left:55%;animation-delay:2s}
+.c4{background:#FFB74D;top:-10px;left:75%;animation-delay:3s}
+.c5{background:#CE93D8;top:-10px;left:90%;animation-delay:4s}
+.c6{background:#FF7043;top:-10px;left:5%;animation-delay:1.5s}
+@keyframes fall{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(600px) rotate(540deg);opacity:0}}
+.hero-badge{display:inline-block;background:#FF7043;color:#fff;font-size:12px;font-weight:700;letter-spacing:.1em;padding:5px 18px;border-radius:20px;margin-bottom:20px}
+.hero-title{font-family:'Kaisei Decol',serif;font-size:clamp(28px,6vw,52px);font-weight:700;line-height:1.3;color:#2d2a26;margin-bottom:12px}
+.hero-title span{color:#FF7043}
+.hero-sub{font-size:14px;color:#666;line-height:2;max-width:500px;margin:0 auto 28px}
+.hero-emoji-row{font-size:30px;letter-spacing:10px}
+
+/* Wave */
+.wave{width:100%;height:48px;display:block;margin-top:-2px}
+
+/* Sections */
+.section{padding:60px 24px;max-width:780px;margin:0 auto}
+.section-alt{padding:60px 24px;background:#f0f8ff}
+.section-alt-inner{max-width:780px;margin:0 auto}
+.section-warm{padding:60px 24px;background:#fff8f5}
+.section-warm-inner{max-width:780px;margin:0 auto}
+
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+.sec-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.ic-orange{background:#FFF3E0}
+.ic-blue{background:#E3F2FD}
+.ic-green{background:#E8F5E9}
+.ic-purple{background:#F3E5F5}
+.sec-title{font-family:'Kaisei Decol',serif;font-size:22px;font-weight:700;color:#2d2a26}
+
+/* Thanks */
+.thanks-card{background:#fff;border:2px solid #FFE0CC;border-radius:20px;padding:32px 36px;line-height:2.1;font-size:14.5px;color:#444;position:relative;overflow:hidden}
+.thanks-card::before{content:'🎉';position:absolute;top:16px;right:20px;font-size:36px;opacity:0.15}
+.thanks-card strong{color:#FF7043;font-weight:700}
+
+/* Video */
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.video-card{background:#fff;border:2px solid #E3F2FD;border-radius:18px;overflow:hidden;text-decoration:none;transition:transform .25s,box-shadow .25s;display:block}
+.video-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(79,195,247,0.2)}
+.video-thumb{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative}
+.vt1{background:linear-gradient(135deg,#e0f4ff,#b8e8ff)}
+.vt2{background:linear-gradient(135deg,#fff0e0,#ffd8b0)}
+.play-ring{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.92);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 16px rgba(0,0,0,0.12)}
+.video-info{padding:14px 16px}
+.video-label{font-size:10px;color:#aaa;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.video-name{font-size:14px;font-weight:700;color:#2d2a26}
+
+/* Members */
+.members-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.member-card{background:#fff;border:2px solid #eee;border-radius:18px;padding:22px 14px;text-align:center;transition:transform .25s,box-shadow .25s}
+.member-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+.mc-orange{border-color:#FFCCBC} .mc-blue{border-color:#BBDEFB}
+.mc-green{border-color:#C8E6C9} .mc-purple{border-color:#E1BEE7}
+.mc-teal{border-color:#B2DFDB} .mc-amber{border-color:#FFE0B2}
+.member-ava{width:60px;height:60px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.ava-o{background:#FFF3E0} .ava-b{background:#E3F2FD}
+.ava-g{background:#E8F5E9} .ava-p{background:#F3E5F5}
+.ava-t{background:#E0F2F1} .ava-a{background:#FFF8E1}
+.member-name{font-size:15px;font-weight:700;color:#2d2a26;margin-bottom:5px}
+.member-desc{font-size:12px;color:#888;line-height:1.7;margin-bottom:10px}
+.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:5px}
+.tag{font-size:10px;padding:3px 8px;border-radius:12px;background:#f5f5f5;color:#777}
+
+/* Messages */
+.msg-grid{display:grid;gap:14px}
+.msg-card{background:#fff;border:2px solid #F3E5F5;border-radius:16px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start}
+.msg-ava{width:40px;height:40px;min-width:40px;border-radius:50%;background:#F3E5F5;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#9C27B0}
+.msg-body{}
+.msg-name{font-size:12px;font-weight:700;color:#9C27B0;margin-bottom:6px}
+.msg-text{font-size:13.5px;color:#555;line-height:1.9}
+
+/* Footer */
+.footer-wave{width:100%;display:block;margin-bottom:-2px}
+footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text-align:center}
+.footer-emoji{font-size:34px;letter-spacing:14px;margin-bottom:14px}
+.footer-title{font-family:'Kaisei Decol',serif;font-size:19px;color:rgba(255,255,255,0.88);margin-bottom:10px;font-weight:700}
+.footer-text{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.9}
+
+/* Divider */
+.divider{height:2px;background:linear-gradient(90deg,transparent,#FFE0CC,transparent);margin:0}
+
+@media(max-width:600px){
+  .video-grid{grid-template-columns:1fr}
+  .members-grid{grid-template-columns:repeat(2,1fr)}
+  .thanks-card{padding:24px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-deco">
+    <div class="bubble b1"></div><div class="bubble b2"></div>
+    <div class="bubble b3"></div><div class="bubble b4"></div><div class="bubble b5"></div>
+    <div class="confetti c1"></div><div class="confetti c2"></div>
+    <div class="confetti c3"></div><div class="confetti c4"></div>
+    <div class="confetti c5"></div><div class="confetti c6"></div>
+  </div>
+  <p class="hero-badge">2025年5月同期　1st Anniversary 🎉</p>
+  <h1 class="hero-title">サポメンのみなさんへ<br><span>ありがとう</span>ございました</h1>
+  <p class="hero-sub">この1年、あなたたちがいたから　ここまで来られた<br>普段なかなか言えない感謝を　ここに込めました</p>
+  <div class="hero-emoji-row">🐋🐈‍⬛💻🏠🍄🌟🎨💅👓</div>
+</section>
+
+<svg class="wave" viewBox="0 0 1200 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,24 C200,48 500,0 800,32 C1000,52 1100,16 1200,24 L1200,48 L0,48 Z" fill="#fffdf7"/>
+</svg>
+
+<!-- 感謝の言葉 -->
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-icon ic-orange">💌</div>
+    <h2 class="sec-title">感謝の言葉</h2>
+  </div>
+  <div class="thanks-card">
+    サポートメンバーの皆さん、<strong>1年間本当にありがとうございました。</strong><br><br>
+    広いリベシティの中で迷子になりかけた私たちに、居場所を作ってくれたのはあなたたちです。毎週の交流会、劇団5月、実践クロコ講座……どの企画も楽しくて、気づけばここが「帰ってきたい場所」になっていました。<br><br>
+    <strong>学んで、行動して、変わっていけたのも</strong>、あなたたちが傍にいてくれたから。コミュ障だった自分がここまで人と関われるようになったのも、みなさんのおかげです。<br><br>
+    今日が人生で一番若い日。これからも自由への道を、一緒に歩いていきましょう。<strong>存在そのものがありがとうです。</strong>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 動画 -->
+<div class="section-alt">
+  <div class="section-alt-inner">
+    <div class="sec-head">
+      <div class="sec-icon ic-blue">🎬</div>
+      <h2 class="sec-title">サプライズ動画</h2>
+    </div>
+    <div class="video-grid">
+      <a class="video-card" href="https://youtube.com" target="_blank">
+        <!-- ↑ サプライズ動画のYouTube URLに差し替えてください -->
+        <div class="video-thumb vt1">
+          <div class="play-ring">▶</div>
+        </div>
+        <div class="video-info">
+          <p class="video-label">Surprise Video</p>
+          <p class="video-name">サプライズ動画</p>
+        </div>
+      </a>
+      <a class="video-card" href="https://youtube.com" target="_blank">
+        <!-- ↑ スライドショー×BGMのYouTube URLに差し替えてください -->
+        <div class="video-thumb vt2">
+          <div class="play-ring">▶</div>
+        </div>
+        <div class="video-info">
+          <p class="video-label">Slideshow × BGM</p>
+          <p class="video-name">スライドショー × BGM</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<svg class="wave" viewBox="0 0 1200 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,32 C300,0 700,48 1200,16 L1200,48 L0,48 Z" fill="#fffdf7"/>
+  <path d="M0,32 C300,0 700,48 1200,16 L1200,0 L0,0 Z" fill="#f0f8ff"/>
+</svg>
+
+<!-- サポメン -->
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-icon ic-green">✨</div>
+    <h2 class="sec-title">サポートメンバー9名</h2>
+  </div>
+  <div class="members-grid">
+    <div class="member-card mc-orange">
+      <div class="member-ava ava-o">🐋</div>
+      <p class="member-name">りっちゃん</p>
+      <p class="member-desc">最初に灯りをともした<br>5月の太陽</p>
+      <div class="tags"><span class="tag">リーダー</span><span class="tag">女神</span><span class="tag">フッ軽</span></div>
+    </div>
+    <div class="member-card mc-blue">
+      <div class="member-ava ava-b">🐈‍⬛</div>
+      <p class="member-name">クロネコさん</p>
+      <p class="member-desc">動かない山のような<br>静かな強さ</p>
+      <div class="tags"><span class="tag">癒しボイス</span><span class="tag">安定感</span></div>
+    </div>
+    <div class="member-card mc-teal">
+      <div class="member-ava ava-t">💻</div>
+      <p class="member-name">くきさん</p>
+      <p class="member-desc">困ったらすぐ解決<br>ITの神</p>
+      <div class="tags"><span class="tag">IT最強</span><span class="tag">多才</span></div>
+    </div>
+    <div class="member-card mc-green">
+      <div class="member-ava ava-g">🏠</div>
+      <p class="member-name">かなめさん</p>
+      <p class="member-desc">今夜もoviceの灯りが<br>消えない部屋</p>
+      <div class="tags"><span class="tag">ovice警備員</span><span class="tag">団長</span></div>
+    </div>
+    <div class="member-card mc-amber">
+      <div class="member-ava ava-a">🍄</div>
+      <p class="member-name">なぽさん</p>
+      <p class="member-desc">ドイツから届く<br>レアキャラ</p>
+      <div class="tags"><span class="tag">ドイツ在住</span><span class="tag">愉快犯</span></div>
+    </div>
+    <div class="member-card mc-orange">
+      <div class="member-ava ava-o">🌟</div>
+      <p class="member-name">あかりさん</p>
+      <p class="member-desc">舞台を照らす<br>5月のアイドル</p>
+      <div class="tags"><span class="tag">ヒロイン</span><span class="tag">英語堪能</span></div>
+    </div>
+    <div class="member-card mc-green">
+      <div class="member-ava ava-g">🎨</div>
+      <p class="member-name">ほんちゃん</p>
+      <p class="member-desc">白いものに色をのせる<br>抹茶色の鳥</p>
+      <div class="tags"><span class="tag">イラスト激ウマ</span><span class="tag">癒し</span></div>
+    </div>
+    <div class="member-card mc-purple">
+      <div class="member-ava ava-p">💅</div>
+      <p class="member-name">チョコちゃん</p>
+      <p class="member-desc">耳に残る声<br>静かな力</p>
+      <div class="tags"><span class="tag">ナレーター</span><span class="tag">ネイル</span></div>
+    </div>
+    <div class="member-card mc-blue">
+      <div class="member-ava ava-b">👓</div>
+      <p class="member-name">まーぼう</p>
+      <p class="member-desc">またそこにいる温度<br>愛されキャラ</p>
+      <div class="tags"><span class="tag">ねーぼう</span><span class="tag">たーぼう</span><span class="tag">IQ800</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 寄せ書き -->
+<div class="section-warm">
+  <div class="section-warm-inner">
+    <div class="sec-head">
+      <div class="sec-icon ic-purple">💬</div>
+      <h2 class="sec-title">みんなからの寄せ書き</h2>
+    </div>
+    <div class="msg-grid">
+      <!-- ↓ メッセージが集まったら差し替えてください -->
+      <div class="msg-card">
+        <div class="msg-ava">A</div>
+        <div class="msg-body">
+          <p class="msg-name">Aさん</p>
+          <p class="msg-text">1年間本当にありがとうございました。サポメンの皆さんのおかげで、リベシティでの活動がとても充実したものになりました！</p>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-ava">B</div>
+        <div class="msg-body">
+          <p class="msg-name">Bさん</p>
+          <p class="msg-text">コミュ障な自分がここまで人との交流会に参加できるのは皆様のおかげです。本当にありがとうございます。</p>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-ava">C</div>
+        <div class="msg-body">
+          <p class="msg-name">Cさん</p>
+          <p class="msg-text">継続して見守ってくれるあなた方は親戚！これからも一緒に自由への道を歩んでいきましょう。</p>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-ava">D</div>
+        <div class="msg-body">
+          <p class="msg-name">Dさん</p>
+          <p class="msg-text">5月サポメンさんの団結力は25年の中でも1番強い！そんな仲良し管理人達を見習っていきます！</p>
+        </div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-ava">E</div>
+        <div class="msg-body">
+          <p class="msg-name">Eさん</p>
+          <p class="msg-text">存在そのものがありがとう！個性豊かなサポメンさんにいつも助けられています。みんな大好きです🫶</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<svg class="footer-wave" viewBox="0 0 1200 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,0 C400,48 800,0 1200,32 L1200,48 L0,48 Z" fill="#2d2a26"/>
+  <path d="M0,0 C400,48 800,0 1200,32 L1200,0 L0,0 Z" fill="#fff8f5"/>
+</svg>
+<footer>
+  <div class="footer-emoji">🐋🌟🍄</div>
+  <p class="footer-title">2025年5月同期　1st Anniversary</p>
+  <p class="footer-text">with love from everyone in 5月同期 🎉<br>準備してくれたサプライズメンバーにも感謝です</p>
+</footer>
+
+</body>
+</html>
