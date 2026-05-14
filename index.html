@@ -69,21 +69,76 @@ body{font-family:'Noto Sans JP',sans-serif;background:#fffdf7;color:#2d2a26;over
 .video-label{font-size:10px;color:#aaa;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
 .video-name{font-size:14px;font-weight:700;color:#2d2a26}
 
-/* Members */
-.members-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.member-card{background:#fff;border:2px solid #eee;border-radius:18px;padding:22px 14px;text-align:center;transition:transform .25s,box-shadow .25s}
-.member-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
-.mc-orange{border-color:#FFCCBC} .mc-blue{border-color:#BBDEFB}
-.mc-green{border-color:#C8E6C9} .mc-purple{border-color:#E1BEE7}
-.mc-teal{border-color:#B2DFDB} .mc-amber{border-color:#FFE0B2}
-.member-ava{width:60px;height:60px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px}
-.ava-o{background:#FFF3E0} .ava-b{background:#E3F2FD}
-.ava-g{background:#E8F5E9} .ava-p{background:#F3E5F5}
-.ava-t{background:#E0F2F1} .ava-a{background:#FFF8E1}
-.member-name{font-size:15px;font-weight:700;color:#2d2a26;margin-bottom:5px}
-.member-desc{font-size:12px;color:#888;line-height:1.7;margin-bottom:10px}
-.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:5px}
-.tag{font-size:10px;padding:3px 8px;border-radius:12px;background:#f5f5f5;color:#777}
+/* Member Carousel */
+.mc-outer{position:relative;overflow:hidden;background:#f8f9fa;padding:0 0 52px}
+.mc-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
+.mc-slide{min-width:100%;padding:32px 20px;box-sizing:border-box}
+
+/* Bubble Card */
+.mc-card{position:relative;width:100%;max-width:960px;margin:0 auto;height:420px;background:#fff;border-radius:28px;box-shadow:0 6px 40px rgba(0,0,0,0.07);border-top:4px solid var(--accent,#FF7043)}
+
+/* Center content */
+.mc-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:2;width:200px;pointer-events:none}
+.mc-emo{font-size:90px;line-height:1;margin-bottom:12px;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12))}
+.mc-name{font-family:'Kaisei Decol',serif;font-size:22px;font-weight:700;color:#2d2a26;margin-bottom:4px}
+.mc-role{font-size:10.5px;color:#bbb;letter-spacing:.07em;margin-bottom:12px;line-height:1.6}
+.mc-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin-bottom:8px}
+.mc-tag{font-size:10px;padding:3px 9px;border-radius:20px;background:var(--accent-bg,#FFF3E0);color:var(--accent,#FF7043);font-weight:700}
+.mc-num{font-size:10px;color:#ccc;letter-spacing:.1em;margin-top:4px}
+
+/* Speech bubbles */
+.mc-bubble{position:absolute;background:#fff;border-radius:14px;padding:10px 14px;font-size:12.5px;line-height:1.65;color:#555;box-shadow:0 3px 18px rgba(0,0,0,0.09);max-width:190px;z-index:3;border:1.5px solid #f2f2f2;opacity:0;word-break:break-word}
+/* Tail: left bubbles → tail points right */
+.mc-bubble.bl::after{content:'';position:absolute;right:-9px;top:50%;transform:translateY(-50%);border:9px solid transparent;border-left-color:#fff;border-right-width:0}
+/* Tail: right bubbles → tail points left */
+.mc-bubble.br::after{content:'';position:absolute;left:-9px;top:50%;transform:translateY(-50%);border:9px solid transparent;border-right-color:#fff;border-left-width:0}
+/* Positions */
+.mc-b1{top:30px;left:18px}
+.mc-b2{top:30px;right:18px}
+.mc-b3{top:50%;left:18px;transform:translateY(-50%)}
+.mc-b4{top:50%;right:18px;transform:translateY(-50%)}
+.mc-b5{bottom:30px;left:18px}
+.mc-b6{bottom:30px;right:18px}
+
+/* Animations */
+@keyframes bblIn{0%{opacity:0;transform:scale(.88) translateY(10px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes bblFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes bblInMid{0%{opacity:0;transform:translateY(-50%) scale(.88)}100%{opacity:1;transform:translateY(-50%) scale(1)}}
+@keyframes bblFloatMid{0%,100%{transform:translateY(-50%)}50%{transform:translateY(calc(-50% - 7px))}}
+
+.mc-slide.is-visible .mc-b1{animation:bblIn .5s .10s ease both,bblFloat 3.1s .60s ease-in-out infinite}
+.mc-slide.is-visible .mc-b2{animation:bblIn .5s .24s ease both,bblFloat 2.8s .74s ease-in-out infinite}
+.mc-slide.is-visible .mc-b3{animation:bblInMid .5s .40s ease both,bblFloatMid 3.3s .90s ease-in-out infinite}
+.mc-slide.is-visible .mc-b4{animation:bblInMid .5s .54s ease both,bblFloatMid 2.9s 1.04s ease-in-out infinite}
+.mc-slide.is-visible .mc-b5{animation:bblIn .5s .68s ease both,bblFloat 3.0s 1.18s ease-in-out infinite}
+.mc-slide.is-visible .mc-b6{animation:bblIn .5s .84s ease both,bblFloat 3.4s 1.34s ease-in-out infinite}
+
+/* Nav Buttons */
+.mc-btn{position:absolute;top:50%;transform:translateY(-60%);width:44px;height:44px;border-radius:50%;border:2px solid #e8e8e8;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,0.1);font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;color:#999;z-index:10;line-height:1;padding:0}
+.mc-btn:hover{border-color:#FF7043;color:#FF7043;box-shadow:0 4px 20px rgba(255,112,67,0.2);transform:translateY(-60%) scale(1.08)}
+.mc-prev{left:14px}
+.mc-next{right:14px}
+.mc-dots{display:flex;justify-content:center;gap:7px;margin-top:22px}
+.mc-dot{width:8px;height:8px;border-radius:50%;background:#ddd;border:none;cursor:pointer;padding:0;transition:all .3s}
+.mc-dot.active{background:#FF7043;width:24px;border-radius:4px}
+
+/* Mobile */
+@media(max-width:640px){
+  .mc-card{height:auto;display:flex;flex-direction:column;align-items:center;padding:24px 16px 20px}
+  .mc-center{position:static;transform:none;width:100%;margin-bottom:16px}
+  .mc-bubble{position:static;max-width:100%;transform:none!important;margin:0 0 8px}
+  .mc-bubble.bl::after,.mc-bubble.br::after{display:none}
+  .mc-slide.is-visible .mc-b1,.mc-slide.is-visible .mc-b2,.mc-slide.is-visible .mc-b3,
+  .mc-slide.is-visible .mc-b4,.mc-slide.is-visible .mc-b5,.mc-slide.is-visible .mc-b6{animation:bblIn .5s ease both}
+  .mc-slide.is-visible .mc-b1{animation-delay:.10s}
+  .mc-slide.is-visible .mc-b2{animation-delay:.22s}
+  .mc-slide.is-visible .mc-b3{animation-delay:.36s}
+  .mc-slide.is-visible .mc-b4{animation-delay:.50s}
+  .mc-slide.is-visible .mc-b5{animation-delay:.64s}
+  .mc-slide.is-visible .mc-b6{animation-delay:.78s}
+  .mc-slide{padding:16px 12px}
+  .mc-emo{font-size:72px}
+}
 
 /* Messages */
 .msg-grid{display:grid;gap:14px}
@@ -105,7 +160,6 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
 
 @media(max-width:600px){
   .video-grid{grid-template-columns:1fr}
-  .members-grid{grid-template-columns:repeat(2,1fr)}
   .thanks-card{padding:24px 20px}
 }
 </style>
@@ -156,7 +210,6 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
     </div>
     <div class="video-grid">
       <a class="video-card" href="https://youtube.com" target="_blank">
-        <!-- ↑ サプライズ動画のYouTube URLに差し替えてください -->
         <div class="video-thumb vt1">
           <div class="play-ring">▶</div>
         </div>
@@ -166,7 +219,6 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
         </div>
       </a>
       <a class="video-card" href="https://youtube.com" target="_blank">
-        <!-- ↑ スライドショー×BGMのYouTube URLに差し替えてください -->
         <div class="video-thumb vt2">
           <div class="play-ring">▶</div>
         </div>
@@ -185,67 +237,191 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
 </svg>
 
 <!-- サポメン -->
-<div class="section">
+<div class="section" style="padding-bottom:20px">
   <div class="sec-head">
     <div class="sec-icon ic-green">✨</div>
     <h2 class="sec-title">サポートメンバー9名</h2>
   </div>
-  <div class="members-grid">
-    <div class="member-card mc-orange">
-      <div class="member-ava ava-o">🐋</div>
-      <p class="member-name">りっちゃん</p>
-      <p class="member-desc">最初に灯りをともした<br>5月の太陽</p>
-      <div class="tags"><span class="tag">リーダー</span><span class="tag">女神</span><span class="tag">フッ軽</span></div>
+</div>
+
+<div class="mc-outer">
+  <div class="mc-track" id="mcTrack">
+
+    <!-- 01 りっちゃん -->
+    <div class="mc-slide is-visible">
+      <div class="mc-card" style="--accent:#FF7043;--accent-bg:#FFF3E0">
+        <div class="mc-center">
+          <div class="mc-emo">🐋</div>
+          <p class="mc-name">りっちゃん</p>
+          <p class="mc-role">5月同期チャット立ち上げ人</p>
+          <div class="mc-tags"><span class="mc-tag">リーダー</span><span class="mc-tag">女神</span><span class="mc-tag">フッ軽</span><span class="mc-tag">太陽</span></div>
+          <p class="mc-num">01 / 09</p>
+        </div>
+        <div class="mc-bubble bl mc-b1">コミュ力おばけ</div>
+        <div class="mc-bubble bl mc-b3">女神、懐の深さ無限大</div>
+        <div class="mc-bubble bl mc-b5">盛り上げ上手 聞き上手</div>
+        <div class="mc-bubble br mc-b2">褒め上手</div>
+        <div class="mc-bubble br mc-b4">太陽のような存在</div>
+        <div class="mc-bubble br mc-b6">くじら海賊船🐳の船長</div>
+      </div>
     </div>
-    <div class="member-card mc-blue">
-      <div class="member-ava ava-b">🐈‍⬛</div>
-      <p class="member-name">クロネコさん</p>
-      <p class="member-desc">動かない山のような<br>静かな強さ</p>
-      <div class="tags"><span class="tag">癒しボイス</span><span class="tag">安定感</span></div>
+
+    <!-- 02 クロネコさん -->
+    <div class="mc-slide">
+      <div class="mc-card" style="--accent:#5C6BC0;--accent-bg:#E8EAF6">
+        <div class="mc-center">
+          <div class="mc-emo">🐈‍⬛</div>
+          <p class="mc-name">クロネコさん</p>
+          <p class="mc-role">法律系・癒しボイスの柱</p>
+          <div class="mc-tags"><span class="mc-tag">癒しボイス</span><span class="mc-tag">法律系</span><span class="mc-tag">どっしり</span><span class="mc-tag">安定感</span></div>
+          <p class="mc-num">02 / 09</p>
+        </div>
+        <div class="mc-bubble bl mc-b1">心優しいマッチョ裁判官</div>
+        <div class="mc-bubble bl mc-b3">安定感、動かざること山のごとく</div>
+        <div class="mc-bubble bl mc-b5">物腰の柔らかいお姿が素敵</div>
+        <div class="mc-bubble br mc-b2">イケボネコ</div>
+        <div class="mc-bubble br mc-b4">お酒が入ると陽気になる</div>
+        <div class="mc-bubble br mc-b6">上品でスマートな優しいシティボーイ</div>
+      </div>
     </div>
-    <div class="member-card mc-teal">
-      <div class="member-ava ava-t">💻</div>
-      <p class="member-name">くきさん</p>
-      <p class="member-desc">困ったらすぐ解決<br>ITの神</p>
-      <div class="tags"><span class="tag">IT最強</span><span class="tag">多才</span></div>
+
+    <!-- 03 くきさん -->
+    <div class="mc-slide">
+      <div class="mc-card" style="--accent:#00897B;--accent-bg:#E0F2F1">
+        <div class="mc-center">
+          <div class="mc-emo">💻</div>
+          <p class="mc-name">くきさん</p>
+          <p class="mc-role">ITエンジニア最強・多才の人</p>
+          <div class="mc-tags"><span class="mc-tag">IT最強</span><span class="mc-tag">多才</span><span class="mc-tag">問題解決</span></div>
+          <p class="mc-num">03 / 09</p>
+        </div>
+        <div class="mc-bubble bl mc-b1">なんでも知ってる</div>
+        <div class="mc-bubble bl mc-b3">頭脳明晰 意外とお笑い担当</div>
+        <div class="mc-bubble bl mc-b5">サポート力が神</div>
+        <div class="mc-bubble br mc-b2">実物とアイコン同じすぎる😂</div>
+        <div class="mc-bubble br mc-b4">あったらいいなを叶えるITのオーソリティ</div>
+        <div class="mc-bubble br mc-b6">必殺仕事人</div>
+      </div>
     </div>
-    <div class="member-card mc-green">
-      <div class="member-ava ava-g">🏠</div>
-      <p class="member-name">かなめさん</p>
-      <p class="member-desc">今夜もoviceの灯りが<br>消えない部屋</p>
-      <div class="tags"><span class="tag">ovice警備員</span><span class="tag">団長</span></div>
+
+    <!-- 04 かなめさん -->
+    <div class="mc-slide">
+      <div class="mc-card" style="--accent:#43A047;--accent-bg:#E8F5E9">
+        <div class="mc-center">
+          <div class="mc-emo">🏠</div>
+          <p class="mc-name">かなめさん</p>
+          <p class="mc-role">ovice警備員・保健室の先生</p>
+          <div class="mc-tags"><span class="mc-tag">ovice警備員</span><span class="mc-tag">保健室</span><span class="mc-tag">団長</span></div>
+          <p class="mc-num">04 / 09</p>
+        </div>
+        <div class="mc-bubble bl mc-b1">oviceの住人</div>
+        <div class="mc-bubble bl mc-b3">心のカウンセラー</div>
+        <div class="mc-bubble bl mc-b5">24時間oviceを警備中！</div>
+        <div class="mc-bubble br mc-b2">想像力 企画力 実行力　全てを兼ね備えている</div>
+        <div class="mc-bubble br mc-b4">いつ寝てます？笑</div>
+        <div class="mc-bubble br mc-b6">保健室の先生</div>
+      </div>
     </div>
-    <div class="member-card mc-amber">
-      <div class="member-ava ava-a">🍄</div>
-      <p class="member-name">なぽさん</p>
-      <p class="member-desc">ドイツから届く<br>レアキャラ</p>
-      <div class="tags"><span class="tag">ドイツ在住</span><span class="tag">愉快犯</span></div>
+
+    <!-- 05 なぽさん -->
+    <div class="mc-slide">
+      <div class="mc-card" style="--accent:#F4511E;--accent-bg:#FBE9E7">
+        <div class="mc-center">
+          <div class="mc-emo">🍄</div>
+          <p class="mc-name">なぽさん</p>
+          <p class="mc-role">ドイツ在住のレアキャラ</p>
+          <div class="mc-tags"><span class="mc-tag">ドイツ在住</span><span class="mc-tag">レアキャラ</span><span class="mc-tag">愉快犯</span></div>
+          <p class="mc-num">05 / 09</p>
+        </div>
+        <div class="mc-bubble bl mc-b1">朝活の同志</div>
+        <div class="mc-bubble bl mc-b3">キノコ一派部長🍄</div>
+        <div class="mc-bubble bl mc-b5">ミステリアス・ちょっと抜けててギャップ萌え</div>
+        <div class="mc-bubble br mc-b2">ドイツから鋭いツッコミ届いてるよ</div>
+        <div class="mc-bubble br mc-b4">交流会で会えるレアキャラ🍄</div>
+        <div class="mc-bubble br mc-b6">自らトラブルを引き当てみんなを楽しませる</div>
+      </div>
     </div>
-    <div class="member-card mc-orange">
-      <div class="member-ava ava-o">🌟</div>
-      <p class="member-name">あかりさん</p>
-      <p class="member-desc">舞台を照らす<br>5月のアイドル</p>
-      <div class="tags"><span class="tag">ヒロイン</span><span class="tag">英語堪能</span></div>
+
+    <!-- 06 あかりさん -->
+    <div class="mc-slide">
+      <div class="mc-card" style="--accent:#FB8C00;--accent-bg:#FFF8E1">
+        <div class="mc-center">
+          <div class="mc-emo">🌟</div>
+          <p class="mc-name">あかりさん</p>
+          <p class="mc-role">劇団5月ヒロイン・5月のアイドル</p>
+          <div class="mc-tags"><span class="mc-tag">ヒロイン</span><span class="mc-tag">アイドル</span><span class="mc-tag">英語堪能</span><span class="mc-tag">照れ屋</span></div>
+          <p class="mc-num">06 / 09</p>
+        </div>
+        <div class="mc-bubble bl mc-b1">ポジティブお嬢</div>
+        <div class="mc-bubble bl mc-b3">照れ屋さんだけど演技力抜群</div>
+        <div class="mc-bubble bl mc-b5">みんなの光・5月のアイドル</div>
+        <div class="mc-bubble br mc-b2">英語ペラペラ、劇団5月のアイドル</div>
+        <div class="mc-bubble br mc-b4">企画がいつも魅力的👀</div>
+        <div class="mc-bubble br mc-b6">抜群の企画力で面白いテーマを提案</div>
+      </div>
     </div>
-    <div class="member-card mc-green">
-      <div class="member-ava ava-g">🎨</div>
-      <p class="member-name">ほんちゃん</p>
-      <p class="member-desc">白いものに色をのせる<br>抹茶色の鳥</p>
-      <div class="tags"><span class="tag">イラスト激ウマ</span><span class="tag">癒し</span></div>
+
+    <!-- 07 ほんちゃん -->
+    <div class="mc-slide">
+      <div class="mc-card" style="--accent:#558B2F;--accent-bg:#F1F8E9">
+        <div class="mc-center">
+          <div class="mc-emo">🎨</div>
+          <p class="mc-name">ほんちゃん</p>
+          <p class="mc-role">イラスト激ウマ・ほわほわ梟</p>
+          <div class="mc-tags"><span class="mc-tag">イラスト激ウマ</span><span class="mc-tag">抹茶</span><span class="mc-tag">梟</span><span class="mc-tag">ほわほわ</span></div>
+          <p class="mc-num">07 / 09</p>
+        </div>
+        <div class="mc-bubble bl mc-b1">ほわほわした喋り方が好き</div>
+        <div class="mc-bubble bl mc-b3">名画家</div>
+        <div class="mc-bubble bl mc-b5">いじられの反応のわちゃわちゃ感がかわいい</div>
+        <div class="mc-bubble br mc-b2">抹茶を見ると思い出します</div>
+        <div class="mc-bubble br mc-b4">癒し系</div>
+        <div class="mc-bubble br mc-b6">MCになるとぶんぶん回せちゃう！</div>
+      </div>
     </div>
-    <div class="member-card mc-purple">
-      <div class="member-ava ava-p">💅</div>
-      <p class="member-name">チョコちゃん</p>
-      <p class="member-desc">耳に残る声<br>静かな力</p>
-      <div class="tags"><span class="tag">ナレーター</span><span class="tag">ネイル</span></div>
+
+    <!-- 08 チョコちゃん -->
+    <div class="mc-slide">
+      <div class="mc-card" style="--accent:#7B1FA2;--accent-bg:#F3E5F5">
+        <div class="mc-center">
+          <div class="mc-emo">💅</div>
+          <p class="mc-name">チョコちゃん</p>
+          <p class="mc-role">ナレーター・電話オペレーター</p>
+          <div class="mc-tags"><span class="mc-tag">ナレーター</span><span class="mc-tag">美声</span><span class="mc-tag">ネイル</span></div>
+          <p class="mc-num">08 / 09</p>
+        </div>
+        <div class="mc-bubble bl mc-b1">声が綺麗</div>
+        <div class="mc-bubble bl mc-b3">ワンちゃんとの掛け合い漫才が最高</div>
+        <div class="mc-bubble bl mc-b5">サポメンのサポメン的存在</div>
+        <div class="mc-bubble br mc-b2">聞き取りやすく心地よいナレーター</div>
+        <div class="mc-bubble br mc-b4">ツッコミ、キレッキレ</div>
+        <div class="mc-bubble br mc-b6">思い立ったら即行動</div>
+      </div>
     </div>
-    <div class="member-card mc-blue">
-      <div class="member-ava ava-b">👓</div>
-      <p class="member-name">まーぼう</p>
-      <p class="member-desc">またそこにいる温度<br>愛されキャラ</p>
-      <div class="tags"><span class="tag">ねーぼう</span><span class="tag">たーぼう</span><span class="tag">IQ800</span></div>
+
+    <!-- 09 まーぼう -->
+    <div class="mc-slide">
+      <div class="mc-card" style="--accent:#1565C0;--accent-bg:#E3F2FD">
+        <div class="mc-center">
+          <div class="mc-emo">👓</div>
+          <p class="mc-name">まーぼう</p>
+          <p class="mc-role">愛されキャラ・ねーぼう・たーぼう</p>
+          <div class="mc-tags"><span class="mc-tag">愛されキャラ</span><span class="mc-tag">ねーぼう</span><span class="mc-tag">たーぼう</span><span class="mc-tag">眼鏡クイッ</span></div>
+          <p class="mc-num">09 / 09</p>
+        </div>
+        <div class="mc-bubble bl mc-b1">愛されキャラ。意外と真面目</div>
+        <div class="mc-bubble bl mc-b3">困った時のまーぼう</div>
+        <div class="mc-bubble bl mc-b5">努力の天才</div>
+        <div class="mc-bubble br mc-b2">みんなのアイドル</div>
+        <div class="mc-bubble br mc-b4">あくなき探求者</div>
+        <div class="mc-bubble br mc-b6">次はどこに出没するの？</div>
+      </div>
     </div>
+
   </div>
+  <button class="mc-btn mc-prev" id="mcPrev" aria-label="前へ">&#8249;</button>
+  <button class="mc-btn mc-next" id="mcNext" aria-label="次へ">&#8250;</button>
+  <div class="mc-dots" id="mcDots"></div>
 </div>
 
 <div class="divider"></div>
@@ -258,7 +434,6 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
       <h2 class="sec-title">みんなからの寄せ書き</h2>
     </div>
     <div class="msg-grid">
-      <!-- ↓ メッセージが集まったら差し替えてください -->
       <div class="msg-card">
         <div class="msg-ava">A</div>
         <div class="msg-body">
@@ -309,5 +484,53 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
   <p class="footer-text">with love from everyone in 5月同期 🎉<br>準備してくれたサプライズメンバーにも感謝です</p>
 </footer>
 
+<script>
+(function(){
+  const track = document.getElementById('mcTrack');
+  const dotsEl = document.getElementById('mcDots');
+  const prevBtn = document.getElementById('mcPrev');
+  const nextBtn = document.getElementById('mcNext');
+  const slides = track.querySelectorAll('.mc-slide');
+  const total = slides.length;
+  let cur = 0;
+
+  slides.forEach(function(_,i){
+    const d = document.createElement('button');
+    d.className = 'mc-dot' + (i===0?' active':'');
+    d.setAttribute('aria-label', 'メンバー'+(i+1));
+    d.addEventListener('click', function(){ goTo(i); });
+    dotsEl.appendChild(d);
+  });
+
+  function restartBubbles(slide){
+    slide.querySelectorAll('.mc-bubble').forEach(function(b){
+      b.style.animation = 'none';
+      b.offsetHeight;
+      b.style.animation = '';
+    });
+  }
+
+  function goTo(n){
+    slides[cur].classList.remove('is-visible');
+    cur = (n + total) % total;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dotsEl.querySelectorAll('.mc-dot').forEach(function(d,i){
+      d.classList.toggle('active', i===cur);
+    });
+    slides[cur].classList.add('is-visible');
+    restartBubbles(slides[cur]);
+  }
+
+  prevBtn.addEventListener('click', function(){ goTo(cur - 1); });
+  nextBtn.addEventListener('click', function(){ goTo(cur + 1); });
+
+  let startX = 0;
+  track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', function(e){
+    const dx = startX - e.changedTouches[0].clientX;
+    if(Math.abs(dx) > 50) goTo(cur + (dx > 0 ? 1 : -1));
+  }, {passive:true});
+})();
+</script>
 </body>
 </html>
