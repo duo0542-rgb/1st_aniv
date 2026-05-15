@@ -148,6 +148,21 @@ body{font-family:'Noto Sans JP',sans-serif;background:#fffdf7;color:#2d2a26;over
 .msg-name{font-size:12px;font-weight:700;color:#9C27B0;margin-bottom:6px}
 .msg-text{font-size:13.5px;color:#555;line-height:1.9}
 
+/* Kiseki cloud marquee */
+.section-kiseki{padding:60px 0 50px;background:linear-gradient(180deg,#d4ecff 0%,#e8f4ff 55%,#eef2ff 100%);position:relative;overflow:hidden}
+.kiseki-inner{position:relative;z-index:1}
+.kiseki-head{max-width:780px;margin:0 auto 28px;padding:0 24px}
+.kiseki-mask{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 13%,#000 87%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 13%,#000 87%,transparent 100%)}
+.kiseki-track{display:flex;gap:24px;padding:36px 0 24px;width:max-content;animation:kisekiScroll 100s linear infinite}
+@keyframes kisekiScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.cloud-card{flex-shrink:0;position:relative;width:210px;background:rgba(255,255,255,0.92);border-radius:18px;padding:28px 16px 16px;box-shadow:0 5px 22px rgba(80,130,200,0.12);border:1.5px solid rgba(200,225,255,0.5)}
+.cloud-card::before{content:'';position:absolute;background:rgba(255,255,255,0.92);border-radius:50%;width:44px;height:44px;top:-22px;left:12px;border:1.5px solid rgba(200,225,255,0.45)}
+.cloud-card::after{content:'';position:absolute;background:rgba(255,255,255,0.92);border-radius:50%;width:30px;height:30px;top:-14px;left:42px;border:1.5px solid rgba(200,225,255,0.45)}
+.cloud-name{font-size:11px;font-weight:700;color:#4a7cc0;margin-bottom:7px;letter-spacing:.06em}
+.cloud-text{font-size:12px;color:#444;line-height:1.8;overflow:hidden;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical}
+.koinobori-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+@media(max-width:640px){.cloud-card{width:180px;padding:24px 12px 14px}}
+
 /* Footer */
 .footer-wave{width:100%;display:block;margin-bottom:-2px}
 footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text-align:center}
@@ -176,7 +191,7 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
     <div class="confetti c5"></div><div class="confetti c6"></div>
   </div>
   <p class="hero-badge">2025年5月同期　1st Anniversary 🎉</p>
-  <h1 class="hero-title">サポメンのみなさんへ<br><span>ありがとう</span>ございました</h1>
+  <h1 class="hero-title">サポメンのみなさんへ<br><span>あよがとう</span>ございました</h1>
   <p class="hero-sub">この1年、あなたたちがいたから　ここまで来られた<br>普段なかなか言えない感謝を　ここに込めました</p>
   <div class="hero-emoji-row">🐋🐈‍⬛💻🏠🍄🌟🎨💅👓</div>
 </section>
@@ -210,6 +225,7 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
     </div>
     <div class="video-grid">
       <a class="video-card" href="https://youtube.com" target="_blank">
+        <!-- ↑ サプライズ動画のYouTube URLに差し替えてください -->
         <div class="video-thumb vt1">
           <div class="play-ring">▶</div>
         </div>
@@ -219,6 +235,7 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
         </div>
       </a>
       <a class="video-card" href="https://youtube.com" target="_blank">
+        <!-- ↑ スライドショー×BGMのYouTube URLに差し替えてください -->
         <div class="video-thumb vt2">
           <div class="play-ring">▶</div>
         </div>
@@ -318,7 +335,7 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
         <div class="mc-bubble bl mc-b3">心のカウンセラー</div>
         <div class="mc-bubble bl mc-b5">24時間oviceを警備中！</div>
         <div class="mc-bubble br mc-b2">想像力 企画力 実行力　全てを兼ね備えている</div>
-        <div class="mc-bubble br mc-b4">いつ寝てます？笑</div>
+        <div class="mc-bubble br mc-b4">いつ寝てす？笑</div>
         <div class="mc-bubble br mc-b6">保健室の先生</div>
       </div>
     </div>
@@ -414,7 +431,7 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
         <div class="mc-bubble bl mc-b5">努力の天才</div>
         <div class="mc-bubble br mc-b2">みんなのアイドル</div>
         <div class="mc-bubble br mc-b4">あくなき探求者</div>
-        <div class="mc-bubble br mc-b6">次はどこに出没するの？</div>
+        <div class="mc-bubble br mc-b6">次はどこに出没するは？</div>
       </div>
     </div>
 
@@ -427,47 +444,140 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
 <div class="divider"></div>
 
 <!-- 寄せ書き -->
-<div class="section-warm">
-  <div class="section-warm-inner">
-    <div class="sec-head">
-      <div class="sec-icon ic-purple">💬</div>
-      <h2 class="sec-title">みんなからの寄せ書き</h2>
+<div class="section-kiseki">
+  <!-- 鯉のぼり背景 -->
+  <svg class="koinobori-bg" viewBox="0 0 1200 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g opacity="0.08">
+      <!-- 鯉のぼり① -->
+      <g transform="translate(130,20)">
+        <rect x="-3" y="0" width="6" height="340" fill="#7B5E3A" rx="3"/>
+        <circle cx="0" cy="18" r="16" fill="#FF6B35"/>
+        <rect x="0" y="34" width="90" height="5" fill="#7B5E3A" rx="2"/>
+        <g transform="translate(90,29)">
+          <path d="M70,0 L65,-11 C42,-18 8,-11 0,0 C8,11 42,18 65,11 Z" fill="#1a1a1a"/>
+          <path d="M3,0 L-12,-9 M3,0 L-12,9" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(90,70)">
+          <path d="M56,0 L52,-9 C34,-14 6,-9 0,0 C6,9 34,14 52,9 Z" fill="#CC2200"/>
+          <path d="M2,0 L-10,-7 M2,0 L-10,7" stroke="#CC2200" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(90,105)">
+          <path d="M44,0 L41,-7 C26,-11 5,-7 0,0 C5,7 26,11 41,7 Z" fill="#1155BB"/>
+          <path d="M2,0 L-9,-6 M2,0 L-9,6" stroke="#1155BB" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </g>
+      </g>
+      <!-- 鯉のぼり② -->
+      <g transform="translate(540,5)">
+        <rect x="-3" y="0" width="6" height="360" fill="#7B5E3A" rx="3"/>
+        <circle cx="0" cy="18" r="16" fill="#43A047"/>
+        <rect x="0" y="34" width="100" height="5" fill="#7B5E3A" rx="2"/>
+        <g transform="translate(100,29)">
+          <path d="M78,0 L72,-12 C47,-20 9,-12 0,0 C9,12 47,20 72,12 Z" fill="#1a1a1a"/>
+          <path d="M3,0 L-13,-10 M3,0 L-13,10" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(100,78)">
+          <path d="M62,0 L57,-10 C38,-16 7,-10 0,0 C7,10 38,16 57,10 Z" fill="#E53935"/>
+          <path d="M2,0 L-11,-8 M2,0 L-11,8" stroke="#E53935" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(100,118)">
+          <path d="M48,0 L44,-8 C29,-13 5,-8 0,0 C5,8 29,13 44,8 Z" fill="#1E88E5"/>
+          <path d="M2,0 L-9,-6 M2,0 L-9,6" stroke="#1E88E5" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </g>
+      </g>
+      <!-- 鯉のぼり③ -->
+      <g transform="translate(1010,15)">
+        <rect x="-3" y="0" width="6" height="350" fill="#7B5E3A" rx="3"/>
+        <circle cx="0" cy="18" r="16" fill="#FF7043"/>
+        <rect x="0" y="34" width="95" height="5" fill="#7B5E3A" rx="2"/>
+        <g transform="translate(95,29)">
+          <path d="M74,0 L68,-11 C45,-19 8,-11 0,0 C8,11 45,19 68,11 Z" fill="#1a1a1a"/>
+          <path d="M3,0 L-12,-9 M3,0 L-12,9" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(95,72)">
+          <path d="M60,0 L55,-9 C36,-15 7,-9 0,0 C7,9 36,15 55,9 Z" fill="#C62828"/>
+          <path d="M2,0 L-10,-8 M2,0 L-10,8" stroke="#C62828" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(95,110)">
+          <path d="M46,0 L42,-7 C28,-12 5,-7 0,0 C5,7 28,12 42,7 Z" fill="#1565C0"/>
+          <path d="M2,0 L-9,-6 M2,0 L-9,6" stroke="#1565C0" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </g>
+      </g>
+    </g>
+  </svg>
+
+  <div class="kiseki-inner">
+    <div class="kiseki-head">
+      <div class="sec-head">
+        <div class="sec-icon ic-purple">💬</div>
+        <h2 class="sec-title">みんなからの寄せ書き</h2>
+      </div>
     </div>
-    <div class="msg-grid">
-      <div class="msg-card">
-        <div class="msg-ava">A</div>
-        <div class="msg-body">
-          <p class="msg-name">Aさん</p>
-          <p class="msg-text">1年間本当にありがとうございました。サポメンの皆さんのおかげで、リベシティでの活動がとても充実したものになりました！</p>
-        </div>
-      </div>
-      <div class="msg-card">
-        <div class="msg-ava">B</div>
-        <div class="msg-body">
-          <p class="msg-name">Bさん</p>
-          <p class="msg-text">コミュ障な自分がここまで人との交流会に参加できるのは皆様のおかげです。本当にありがとうございます。</p>
-        </div>
-      </div>
-      <div class="msg-card">
-        <div class="msg-ava">C</div>
-        <div class="msg-body">
-          <p class="msg-name">Cさん</p>
-          <p class="msg-text">継続して見守ってくれるあなた方は親戚！これからも一緒に自由への道を歩んでいきましょう。</p>
-        </div>
-      </div>
-      <div class="msg-card">
-        <div class="msg-ava">D</div>
-        <div class="msg-body">
-          <p class="msg-name">Dさん</p>
-          <p class="msg-text">5月サポメンさんの団結力は25年の中でも1番強い！そんな仲良し管理人達を見習っていきます！</p>
-        </div>
-      </div>
-      <div class="msg-card">
-        <div class="msg-ava">E</div>
-        <div class="msg-body">
-          <p class="msg-name">Eさん</p>
-          <p class="msg-text">存在そのものがありがとう！個性豊かなサポメンさんにいつも助けられています。みんな大好きです🫶</p>
-        </div>
+    <div class="kiseki-mask">
+      <div class="kiseki-track">
+        <!-- Set 1 -->
+        <div class="cloud-card"><p class="cloud-name">銀ちゃん</p><p class="cloud-text">サポートメンバーさんのおかげで、この1年リベシティでの活動がとても充実したものになりました！皆さんからいただいた行動力💪を自分自身にも活かせるよう、これからも励んでいきます！本当にありがとうございました☺️✨</p></div>
+        <div class="cloud-card"><p class="cloud-name">もっさん</p><p class="cloud-text">いつも楽しい企画をありがとうございます！</p></div>
+        <div class="cloud-card"><p class="cloud-name">ヤスティー</p><p class="cloud-text">なかなか定例会出られないのに、毎回告知いただきありがとうございます😊</p></div>
+        <div class="cloud-card"><p class="cloud-name">Kaomama</p><p class="cloud-text">継続して見守ってくれるあなた方は親戚！です！</p></div>
+        <div class="cloud-card"><p class="cloud-name">コテツ</p><p class="cloud-text">いつも様々な企画をありがとうございます。</p></div>
+        <div class="cloud-card"><p class="cloud-name">バレン</p><p class="cloud-text">1年間、本当にお世話になりました。いつも温かく見守ってくださり、心から感謝しています。相談に乗っていただいたり、そっと背中を押していただいたり、皆さんの存在がとても心強かったです。</p></div>
+        <div class="cloud-card"><p class="cloud-name">愛チャンネル</p><p class="cloud-text">私たちにとって始まりの場所であって、私にとっては唯一の居場所です。こんな素敵な居場所を作っていただき本当にありがとうございます。</p></div>
+        <div class="cloud-card"><p class="cloud-name">ゆうりん</p><p class="cloud-text">毎週楽しい交流会を開催いただき、ありがとうございます！サポメンの皆さんのおかげで、オフィスに行ったり、オフ会を開催したりするきっかけをいただきました✨25年5月同期のサポメンの皆さんが大好きです💕</p></div>
+        <div class="cloud-card"><p class="cloud-name">にっしー</p><p class="cloud-text">サポメンメンバーの熱意から刺激もらっています。サポメンメンバーのおかげでリベ生活が楽しいです。いつも楽しい企画をありがとうございます！</p></div>
+        <div class="cloud-card"><p class="cloud-name">うめ</p><p class="cloud-text">定期交流会や劇団5月、実践クロコ講座など、いつも楽しく価値ある企画をありがとうございます😆コミュ障な自分がここまで人との交流会に参加できるのは皆様のおかげです🙏本当にありがとうございます</p></div>
+        <div class="cloud-card"><p class="cloud-name">たくあん</p><p class="cloud-text">いつも面白い同期会を企画してくれてありがとう✨みんなで楽しむぞという気持ちが伝わってきます🥰</p></div>
+        <div class="cloud-card"><p class="cloud-name">カズー</p><p class="cloud-text">サポメン及び主要メンバーの方々、目に見えない絆を感じ、陽のパワーをいただいています。準備・交流会時の気配りいつもありがとうございます。</p></div>
+        <div class="cloud-card"><p class="cloud-name">ぬん</p><p class="cloud-text">いつも5月同期を盛り上げてくださり、ありがとうございます！個性豊かなサポメンさんにいつも助けられています🙏みんな大好きです🫶✨</p></div>
+        <div class="cloud-card"><p class="cloud-name">きゅう</p><p class="cloud-text">5月サポメンさんの団結力は25年の中でも1番強い！そんな仲良し管理人達を見習っていきます！</p></div>
+        <div class="cloud-card"><p class="cloud-name">いちさき</p><p class="cloud-text">いつも'25年5月メンバーをまとめて下さり、引っ張って下さりありがとうございます。おかげで広大なリベシティの中で迷子にならずに過ごせています。今後ともどうぞよろしくお願いします🤲</p></div>
+        <div class="cloud-card"><p class="cloud-name">みースマイル</p><p class="cloud-text">いつも優しく迎えてくださって感謝してます！参加するといつも元気になってモチベーションアップします！わたしにとって安心できる場所になっています。</p></div>
+        <div class="cloud-card"><p class="cloud-name">あんず</p><p class="cloud-text">5月同期の宝物！存在そのものがありがとう！！</p></div>
+        <div class="cloud-card"><p class="cloud-name">宮殿ちゃん</p><p class="cloud-text">温かく迎えてくれてありがとうございます😊素敵な皆さんに会えてよかったです✨</p></div>
+        <div class="cloud-card"><p class="cloud-name">しゃち子</p><p class="cloud-text">常連さんも初めましての人も、オフィスが近い人も遠い海外の人も、みんなが参加でき、参加して良かった❣️と思える環境と配慮、大きな愛をありがとうございます💐</p></div>
+        <div class="cloud-card"><p class="cloud-name">MOE</p><p class="cloud-text">いつも素敵な企画をありがとうございます😊</p></div>
+        <div class="cloud-card"><p class="cloud-name">みあみあ</p><p class="cloud-text">いつも楽しい企画と学びと交流の時間を創り出して下さって♡ありがとうございます。</p></div>
+        <div class="cloud-card"><p class="cloud-name">ココア</p><p class="cloud-text">いつも5月同期を盛り上げてくださってありがとうございます！サポメンの皆さんのおかげで、5月同期の方と交流することができて、いつも楽しませてもらってます☺️</p></div>
+        <div class="cloud-card"><p class="cloud-name">レベック</p><p class="cloud-text">同期交流の場所を定期的につくってくれてありがとう</p></div>
+        <div class="cloud-card"><p class="cloud-name">まろん</p><p class="cloud-text">交流の場所を作ってくださってありがとうございます。</p></div>
+        <div class="cloud-card"><p class="cloud-name">ゆりちー</p><p class="cloud-text">いつも楽しく暖かい環境を作って盛り上げてくださりありがとうございます💕いつ行っても暖かく優しい空間でとても居心地がよくてありがたいです🥹どんな月でもわけ隔たりなく仲良くして頂けて、スタートダッシュから楽しく今まで続けられています🙏</p></div>
+        <div class="cloud-card"><p class="cloud-name">しのぶ君</p><p class="cloud-text">ちょうど一年前、同じタイミングで入会したにも関わらずサポメン皆さんの成長が著しく、もはや先輩的存在で本当に心強いです！</p></div>
+        <div class="cloud-card"><p class="cloud-name">みっつ</p><p class="cloud-text">いつも同期チャットを盛り上げてくれてありがとうございます！一度リベを離れても、また交流会に参加したいと思えるのは、サポメンのみなさんがいたからです！これからもよろしくお願いします！</p></div>
+        <div class="cloud-card"><p class="cloud-name">ひー</p><p class="cloud-text">交流会やオフ会などの告知・開催、いつもありがとうございます🙏他者貢献を体現される皆さまを心から尊敬しています😭いつも本当にありがとうございます😊</p></div>
+        <div class="cloud-card"><p class="cloud-name">はるか</p><p class="cloud-text">いつも交流会で楽しませてくださりありがとうございます🙌</p></div>
+        <div class="cloud-card"><p class="cloud-name">かなめ</p><p class="cloud-text">いつも5月同期の事を一番に考えて企画・運営してくれてありがとう♥️お互いに励まし励まされ、これまでやって来れたんじゃないかって思います💪これからもしっかり学んで行動して自由への道を歩んでいけたら良いなって思います！</p></div>
+        <div class="cloud-card"><p class="cloud-name">りと</p><p class="cloud-text">いつでもみんなが帰れる場所を作ってくれてありがとう❤️</p></div>
+        <!-- Set 2 (seamless loop) -->
+        <div class="cloud-card"><p class="cloud-name">銀ちゃん</p><p class="cloud-text">サポートメンバーさんのおかげで、この1年リベシティでの活動がとても充実したものになりました！皆さんからいただいた行動力💪を自分自身にも活かせるよう、これからも励んでいきます！本当にありがとうございました☺️✨</p></div>
+        <div class="cloud-card"><p class="cloud-name">もっさん</p><p class="cloud-text">いつも楽しい企画をありがとうございます！</p></div>
+        <div class="cloud-card"><p class="cloud-name">ヤスティー</p><p class="cloud-text">なかなか定例会出られないのに、毎回告知いただきありがとうございます😊</p></div>
+        <div class="cloud-card"><p class="cloud-name">Kaomama</p><p class="cloud-text">継続して見守ってくれるあなた方は親戚！です！</p></div>
+        <div class="cloud-card"><p class="cloud-name">コテツ</p><p class="cloud-text">いつも様々な企画をありがとうございます。</p></div>
+        <div class="cloud-card"><p class="cloud-name">バレン</p><p class="cloud-text">1年間、本当にお世話になりました。いつも温かく見守ってくださり、心から感謝しています。相談に乗っていただいたり、そっと背中を押していただいたり、皆さんの存在がとても心強かったです。</p></div>
+        <div class="cloud-card"><p class="cloud-name">愛チャンネル</p><p class="cloud-text">私たちにとって始まりの場所であって、私にとっては唯一の居場所です。こんな素敵な居場所を作っていただき本当にありがとうございます。</p></div>
+        <div class="cloud-card"><p class="cloud-name">ゆうりん</p><p class="cloud-text">毎週楽しい交流会を開催いただき、ありがとうございます！サポメンの皆さんのおかげで、オフィスに行ったり、オフ会を開催したりするきっかけをいただきました✨25年5月同期のサポメンの皆さんが大好きです💕</p></div>
+        <div class="cloud-card"><p class="cloud-name">にっしー</p><p class="cloud-text">サポメンメンバーの熱意から刺激もらっています。サポメンメンバーのおかげでリベ生活が楽しいです。いつも楽しい企画をありがとうございます！</p></div>
+        <div class="cloud-card"><p class="cloud-name">うめ</p><p class="cloud-text">定期交流会や劇団5月、実践クロコ講座など、いつも楽しく価値ある企画をありがとうございます😆コミュ障な自分がここまで人との交流会に参加できるのは皆様のおかげです🙏本当にありがとうございます</p></div>
+        <div class="cloud-card"><p class="cloud-name">たくあん</p><p class="cloud-text">いつも面白い同期会を企画してくれてありがとう✨みんなで楽しむぞという気持ちが伝わってきます🥰</p></div>
+        <div class="cloud-card"><p class="cloud-name">カズー</p><p class="cloud-text">サポメン及び主要メンバーの方々、目に見えない絆を感じ、陽のパワーをいただいています。準備・交流会時の気配りいつもありがとうございます。</p></div>
+        <div class="cloud-card"><p class="cloud-name">ぬん</p><p class="cloud-text">いつも5月同期を盛り上げてくださり、ありがとうございます！個性豊かなサポメンさんにいつも助けられています🙏みんな大好きです🫶✨</p></div>
+        <div class="cloud-card"><p class="cloud-name">きゅう</p><p class="cloud-text">5月サポメンさんの団結力は25年の中でも1番強い！そんな仲良し管理人達を見習っていきます！</p></div>
+        <div class="cloud-card"><p class="cloud-name">いちさき</p><p class="cloud-text">いつも'25年5月メンバーをまとめて下さり、引っ張って下さりありがとうございます。おかげで広大なリベシティの中で迷子にならずに過ごせています。今後ともどうぞよろしくお願いします🤲</p></div>
+        <div class="cloud-card"><p class="cloud-name">みースマイル</p><p class="cloud-text">いつも優しく迎えてくださって感謝してます！参加するといつも元気になってモチベーションアップします！わたしにとって安心できる場所になっています。</p></div>
+        <div class="cloud-card"><p class="cloud-name">あんず</p><p class="cloud-text">5月同期の宝物！存在そのものがありがとう！！</p></div>
+        <div class="cloud-card"><p class="cloud-name">宮殿ちゃん</p><p class="cloud-text">温かく迎えてくれてありがとうございます😊素敵な皆さんに会えてよかったです✨</p></div>
+        <div class="cloud-card"><p class="cloud-name">しゃち子</p><p class="cloud-text">常連さんも初めましての人も、オフィスが近い人も遠い海外の人も、みんなが参加でき、参加して良かった❣️と思える環境と配慮、大きな愛をありがとうございます💐</p></div>
+        <div class="cloud-card"><p class="cloud-name">MOE</p><p class="cloud-text">いつも素敵な企画をありがとうございます😊</p></div>
+        <div class="cloud-card"><p class="cloud-name">みあみあ</p><p class="cloud-text">いつも楽しい企画と学びと交流の時間を創り出して下さって♡ありがとうございます。</p></div>
+        <div class="cloud-card"><p class="cloud-name">ココア</p><p class="cloud-text">いつも5月同期を盛り上げてくださってありがとうございます！サポメンの皆さんのおかげで、5月同期の方と交流することができて、いつも楽しませてもらってます☺️</p></div>
+        <div class="cloud-card"><p class="cloud-name">レベック</p><p class="cloud-text">同期交流の場所を定期的につくってくれてありがとう</p></div>
+        <div class="cloud-card"><p class="cloud-name">まろん</p><p class="cloud-text">交流の場所を作ってくださってありがとうございます。</p></div>
+        <div class="cloud-card"><p class="cloud-name">ゆりちー</p><p class="cloud-text">いつも楽しく暖かい環境を作って盛り上げてくださりありがとうございます💕いつ行っても暖かく優しい空間でとても居心地がよくてありがたいです🥹どんな月でもわけ隔たりなく仲良くして頂けて、スタートダッシュから楽しく今まで続けられています🙏</p></div>
+        <div class="cloud-card"><p class="cloud-name">しのぶ君</p><p class="cloud-text">ちょうど一年前、同じタイミングで入会したにも関わらずサポメン皆さんの成長が著しく、もはや先輩的存在で本当に心強いです！</p></div>
+        <div class="cloud-card"><p class="cloud-name">みっつ</p><p class="cloud-text">いつも同期チャットを盛り上げてくれてありがとうございます！一度リベを離れても、また交流会に参加したいと思えるのは、サポメンのみなさんがいたからです！これからもよろしくお願いします！</p></div>
+        <div class="cloud-card"><p class="cloud-name">ひー</p><p class="cloud-text">交流会やオフ会などの告知・開催、いつもありがとうございます🙏他者貢献を体現される皆さまを心から尊敬しています😭いつも本当にありがとうございます😊</p></div>
+        <div class="cloud-card"><p class="cloud-name">はるか</p><p class="cloud-text">いつも交流会で楽しませてくださりありがとうございます🙌</p></div>
+        <div class="cloud-card"><p class="cloud-name">かなめ</p><p class="cloud-text">いつも5月同期の事を一番に考えて企画・運営してくれてありがとう♥️お互いに励まし励まされ、これまでやって来れたんじゃないかって思います💪これからもしっかり学んで行動して自由への道を歩んでいけたら良いなって思います！</p></div>
+        <div class="cloud-card"><p class="cloud-name">りと</p><p class="cloud-text">いつでもみんなが帰れる場所を作ってくれてありがとう❤️</p></div>
       </div>
     </div>
   </div>
@@ -476,7 +586,7 @@ footer{background:linear-gradient(135deg,#2d2a26,#3d3836);padding:48px 24px;text
 <!-- Footer -->
 <svg class="footer-wave" viewBox="0 0 1200 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M0,0 C400,48 800,0 1200,32 L1200,48 L0,48 Z" fill="#2d2a26"/>
-  <path d="M0,0 C400,48 800,0 1200,32 L1200,0 L0,0 Z" fill="#fff8f5"/>
+  <path d="M0,0 C400,48 800,0 1200,32 L1200,0 L0,0 Z" fill="#eef2ff"/>
 </svg>
 <footer>
   <div class="footer-emoji">🐋🌟🍄</div>
