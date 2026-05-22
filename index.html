@@ -689,6 +689,19 @@ footer{background:radial-gradient(circle at 12% 22%,rgba(255,255,255,0.10) 0 3px
   <p class="footer-text">with love from everyone in 5月同期 🎉<br>準備してくれたサプライズメンバーにも感謝です</p>
 </footer>
 
+<audio id="bgmAudio" preload="none"></audio>
+<div class="bgm-btn" id="bgmBtn">
+  <button class="bgm-play" id="bgmPlay" aria-label="BGM 再生/停止">
+    <span class="bgm-icon" id="bgmIcon">♪</span>
+    <span class="bgm-track-name" id="bgmTrackName">BGM</span>
+  </button>
+  <div class="bgm-nav">
+    <button class="bgm-prev" id="bgmPrev" aria-label="前の曲">❮</button>
+    <span class="bgm-num" id="bgmNum">1/5</span>
+    <button class="bgm-next" id="bgmNext" aria-label="次の曲">❯</button>
+  </div>
+</div>
+
 <script>
 (function(){
   const track = document.getElementById('mcTrack');
@@ -803,17 +816,5 @@ footer{background:radial-gradient(circle at 12% 22%,rgba(255,255,255,0.10) 0 3px
 })();
 
 </script>
-<audio id="bgmAudio" preload="none"></audio>
-<div class="bgm-btn" id="bgmBtn">
-  <button class="bgm-play" id="bgmPlay" aria-label="BGM 再生/停止">
-    <span class="bgm-icon" id="bgmIcon">♪</span>
-    <span class="bgm-track-name" id="bgmTrackName">BGM</span>
-  </button>
-  <div class="bgm-nav">
-    <button class="bgm-prev" id="bgmPrev" aria-label="前の曲">❮</button>
-    <span class="bgm-num" id="bgmNum">1/5</span>
-    <button class="bgm-next" id="bgmNext" aria-label="次の曲">❯</button>
-  </div>
-</div>
 </body>
 </html>
