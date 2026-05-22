@@ -12,14 +12,14 @@
 body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#a8e0c4 0%,#7ccfe8 10%,#6ec5ef 20%,#84bced 32%,#a6b2e4 45%,#cbacd4 57%,#ecb89c 68%,#f3a071 80%,#b07a66 90%,#2c3e50 100%);background-repeat:no-repeat;color:#2d2a26;overflow-x:hidden}
 
 /* Hero */
-.hero{position:relative;background:linear-gradient(165deg,#bce9cf 0%,#8fdbe8 45%,#6ec3ee 100%);padding:72px 24px 88px;text-align:center;overflow:hidden}
+.hero{position:relative;background:linear-gradient(165deg,#bce9cf 0%,#8fdbe8 45%,#6ec3ee 100%);padding:80px 24px;text-align:center;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .hero-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .bubble{position:absolute;border-radius:50%;opacity:0.18}
-.b1{width:140px;height:140px;background:#4FC3F7;top:-30px;left:-40px}
-.b2{width:90px;height:90px;background:#4DD0E1;top:20px;right:8%}
-.b3{width:180px;height:180px;background:#81C784;bottom:-50px;right:-30px}
-.b4{width:70px;height:70px;background:#80DEEA;bottom:20px;left:12%}
-.b5{width:100px;height:100px;background:#5C9CE0;top:35%;left:3%}
+.b1{width:180px;height:180px;background:#4FC3F7;top:-50px;left:-50px}
+.b2{width:120px;height:120px;background:#4DD0E1;top:10%;right:6%}
+.b3{width:240px;height:240px;background:#81C784;bottom:-70px;right:-40px}
+.b4{width:90px;height:90px;background:#80DEEA;bottom:15%;left:10%}
+.b5{width:130px;height:130px;background:#5C9CE0;top:40%;left:2%}
 .hero-star{position:absolute;color:rgba(255,255,255,0.92);text-shadow:0 1px 6px rgba(80,150,200,0.4);pointer-events:none;animation:twinkle 3s ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:.4;transform:scale(.85)}50%{opacity:1;transform:scale(1.1)}}
 .hero-mush{position:absolute;pointer-events:none;animation:bobUp 4s ease-in-out infinite}
@@ -32,11 +32,13 @@ body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#a8
 .c5{background:#CE93D8;top:-10px;left:90%;animation-delay:4s}
 .c6{background:#FF7043;top:-10px;left:5%;animation-delay:1.5s}
 @keyframes fall{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(600px) rotate(540deg);opacity:0}}
-.hero-badge{display:inline-block;background:#FF7043;color:#fff;font-size:12px;font-weight:700;letter-spacing:.1em;padding:5px 18px;border-radius:20px;margin-bottom:20px}
-.hero-title{font-family:'Kaisei Decol',serif;font-size:clamp(28px,6vw,52px);font-weight:700;line-height:1.3;color:#2d2a26;margin-bottom:12px}
-.hero-title span{color:#FF7043}
-.hero-sub{font-size:14px;color:#666;line-height:2;max-width:500px;margin:0 auto 28px}
-.hero-emoji-row{font-size:30px;letter-spacing:10px}
+.hero-tag-label{font-family:'Caveat',cursive;font-size:28px;font-weight:400;color:#FFE59A;letter-spacing:.15em;margin-bottom:20px;position:relative;z-index:1}
+.hero-title{font-family:'M PLUS Rounded 1c',sans-serif;font-size:clamp(44px,9vw,82px);font-weight:900;line-height:1.2;color:#fff;margin-bottom:28px;text-shadow:0 3px 24px rgba(0,60,120,0.25);position:relative;z-index:1}
+.hero-anniv{font-family:'Caveat',cursive;font-size:clamp(22px,4vw,38px);font-weight:400;display:block;color:rgba(255,255,255,0.88);margin-bottom:10px;letter-spacing:.05em}
+.hero-sub{font-family:'M PLUS Rounded 1c',sans-serif;font-size:16px;color:rgba(255,255,255,0.82);line-height:1.9;max-width:500px;margin:0 auto 32px;letter-spacing:.04em;position:relative;z-index:1}
+.hero-date{font-family:'Caveat',cursive;font-size:20px;color:#FFE59A;letter-spacing:.3em;margin-bottom:36px;position:relative;z-index:1}
+.hero-scroll{font-size:11px;color:rgba(255,255,255,0.55);letter-spacing:.4em;position:relative;z-index:1}
+.hero-scroll::after{content:'';display:block;width:1px;height:36px;background:rgba(255,255,255,0.35);margin:10px auto 0}
 
 /* Wave */
 .wave{width:100%;height:48px;display:block;margin-top:-2px}
@@ -232,10 +234,14 @@ footer{background:radial-gradient(circle at 12% 22%,rgba(255,255,255,0.10) 0 3px
     <span class="hero-mush" style="top:16%;left:6%;font-size:26px;animation-delay:.2s">🍄</span>
     <span class="hero-mush" style="bottom:14%;right:13%;font-size:22px;animation-delay:1.1s">🍄</span>
   </div>
-  <p class="hero-badge">2025年5月同期　1st Anniversary 🎉</p>
-  <h1 class="hero-title">サポメンのみなさんへ<br><span>ありがとう</span>ございました</h1>
+  <p class="hero-tag-label">リベシティ 2025年5月同期</p>
+  <h1 class="hero-title">
+    <span class="hero-anniv">1st Anniversary</span>
+    サポメンのみなさん、<br>ありがとう。
+  </h1>
   <p class="hero-sub">この1年、あなたたちがいたから　ここまで来られた<br>普段なかなか言えない感謝を　ここに込めました</p>
-  <div class="hero-emoji-row">🐋🐈‍⬛💻🏠🍄🌟🎨💅👓</div>
+  <div class="hero-date">2025.5 → 2026.5</div>
+  <div class="hero-scroll">SCROLL</div>
 </section>
 
 <svg class="wave" viewBox="0 0 1200 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
