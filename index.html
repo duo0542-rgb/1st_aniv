@@ -42,11 +42,11 @@ body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#a8
 .wave{width:100%;height:48px;display:block;margin-top:-2px}
 
 /* Sections */
-.section{padding:60px 24px;max-width:780px;margin:0 auto}
-.section-alt{padding:60px 24px}
-.section-alt-inner{max-width:780px;margin:0 auto}
-.section-warm{padding:60px 24px;background:#fff8f5}
-.section-warm-inner{max-width:780px;margin:0 auto}
+.section{padding:80px 24px;max-width:780px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.section-alt{padding:80px 24px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.section-alt-inner{max-width:780px;margin:0 auto;width:100%}
+.section-warm{padding:80px 24px;background:#fff8f5;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.section-warm-inner{max-width:780px;margin:0 auto;width:100%}
 
 .sec-head{text-align:center;margin-bottom:36px}
 .section-tag{font-family:'Caveat',cursive;font-size:28px;font-weight:400;letter-spacing:.1em;color:#FFE59A;margin-bottom:6px;display:block}
@@ -149,7 +149,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#a8
 .msg-text{font-size:13.5px;color:#555;line-height:1.9}
 
 /* Kiseki cloud marquee */
-.section-kiseki{padding:60px 0 50px;position:relative;overflow:hidden}
+.section-kiseki{padding:80px 0 60px;position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 .kiseki-inner{position:relative;z-index:1}
 .kiseki-head{max-width:780px;margin:0 auto 28px;padding:0 24px}
 .kiseki-mask{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 13%,#000 87%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 13%,#000 87%,transparent 100%)}
@@ -188,8 +188,8 @@ footer{background:radial-gradient(circle at 12% 22%,rgba(255,255,255,0.10) 0 3px
 .mc-emo-img{width:100px;height:100px;border-radius:50%;object-fit:cover;margin-bottom:12px;box-shadow:0 4px 14px rgba(0,0,0,0.15);border:3px solid rgba(255,255,255,0.8)}
 
 /* Photo Gallery */
-.section-photos{padding:70px 24px 60px}
-.section-photos-inner{max-width:860px;margin:0 auto}
+.section-photos{padding:80px 24px 60px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.section-photos-inner{max-width:860px;margin:0 auto;width:100%}
 .photos-label{font-family:'Caveat',cursive;font-size:28px;font-weight:400;letter-spacing:.1em;color:#FFE59A;text-align:center;margin-bottom:6px;display:block}
 .photos-title{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(26px,5vw,42px);font-weight:900;letter-spacing:.05em;text-align:center;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,0.30);margin-bottom:10px;display:block}
 .photos-sub{font-family:'M PLUS Rounded 1c',sans-serif;text-align:center;font-size:14px;color:rgba(255,255,255,0.88);margin-bottom:40px;line-height:1.8;text-shadow:0 1px 8px rgba(0,0,0,0.22)}
@@ -286,7 +286,7 @@ footer{background:radial-gradient(circle at 12% 22%,rgba(255,255,255,0.10) 0 3px
 </svg>
 
 <!-- サポメン -->
-<div class="section" style="padding-bottom:20px">
+<div class="section" style="padding-bottom:16px;min-height:auto;display:block">
   <div class="sec-head">
     <span class="section-tag">support members</span>
     <h2 class="sec-title">最高のサポートメンバー</h2>
