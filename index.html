@@ -43,9 +43,17 @@ body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#07
 /* Wave */
 .wave{width:100%;height:48px;display:block;margin-top:-2px}
 
+/* Decorative icons */
+.hero-whale-deco{position:absolute;pointer-events:none;user-select:none;font-size:360px;opacity:0.07;bottom:-70px;right:-30px;z-index:0;line-height:1;transform:scaleX(-1) rotate(-8deg)}
+.deco{position:absolute;pointer-events:none;user-select:none;opacity:0.13;font-size:54px;z-index:0;line-height:1}
+.deco-tl{top:36px;left:36px}
+.deco-tr{top:36px;right:36px}
+.deco-bl{bottom:36px;left:36px}
+.deco-br{bottom:36px;right:36px}
+
 /* Sections */
-.section{padding:80px 24px;max-width:780px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
-.section-alt{padding:80px 24px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.section{padding:80px 24px;max-width:780px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.section-alt{padding:80px 24px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
 .section-alt-inner{max-width:780px;margin:0 auto;width:100%}
 .section-warm{padding:80px 24px;background:#fff8f5;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 .section-warm-inner{max-width:780px;margin:0 auto;width:100%}
@@ -200,7 +208,7 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
 .mc-emo-img{width:100px;height:100px;border-radius:50%;object-fit:cover;margin-bottom:12px;border:3px solid rgba(255,255,255,0.85);box-shadow:0 0 0 5px rgba(255,255,255,0.1),0 0 28px rgba(255,255,255,0.22),0 4px 16px rgba(0,0,0,0.25)}
 
 /* Photo Gallery */
-.section-photos{padding:80px 24px 60px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.section-photos{padding:80px 24px 60px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
 .section-photos-inner{max-width:860px;margin:0 auto;width:100%}
 .photos-label{font-family:'Caveat',cursive;font-size:28px;font-weight:400;letter-spacing:.1em;color:#FFE59A;text-align:center;margin-bottom:6px;display:block}
 .photos-title{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(26px,5vw,42px);font-weight:900;letter-spacing:.05em;text-align:center;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,0.30);margin-bottom:10px;display:block}
@@ -244,6 +252,7 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
     <span class="hero-mush" style="top:16%;left:6%;font-size:26px;animation-delay:.2s">🍄</span>
     <span class="hero-mush" style="bottom:14%;right:13%;font-size:22px;animation-delay:1.1s">🍄</span>
   </div>
+  <span class="hero-whale-deco">🐋</span>
   <p class="hero-tag-label">リベシティ 2025年5月同期</p>
   <h1 class="hero-title">
     <span class="hero-anniv">1st Anniversary</span>
@@ -260,6 +269,8 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
 
 <!-- 感謝の言葉 -->
 <div class="section">
+  <span class="deco deco-tr">⭐</span>
+  <span class="deco deco-bl">🍵</span>
   <div class="sec-head">
     <span class="section-tag">thank you</span>
     <h2 class="sec-title">感謝の言葉</h2>
@@ -277,6 +288,8 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
 
 <!-- 動画 -->
 <div class="section-alt">
+  <span class="deco deco-tl">🍄</span>
+  <span class="deco deco-br">🐱</span>
   <div class="section-alt-inner">
     <div class="sec-head">
       <span class="section-tag">surprise movie</span>
@@ -310,7 +323,9 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
   </div>
 </div>
 
-<div class="mc-outer">
+<div class="mc-outer" style="position:relative">
+  <span class="deco deco-tr" style="opacity:0.10;font-size:62px">🍎</span>
+  <span class="deco deco-bl" style="opacity:0.10;font-size:58px">👓</span>
   <div class="mc-track" id="mcTrack">
 
     <!-- 01 りっちゃん -->
@@ -522,6 +537,8 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
 
 <!-- 寄せ書き -->
 <div class="section-kiseki">
+  <span class="deco deco-tr">💅</span>
+  <span class="deco deco-bl">🫖</span>
   <!-- 鯉のぼり背景 -->
   <svg class="koinobori-bg" viewBox="0 0 1200 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <g opacity="0.08">
@@ -663,6 +680,8 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
 
 <!-- この1年のあゆみ -->
 <div class="section-photos">
+  <span class="deco deco-tl">🐱</span>
+  <span class="deco deco-br">⭐</span>
   <div class="section-photos-inner">
     <span class="photos-label">memories</span>
     <h2 class="photos-title">この1年のあゆみ</h2>
