@@ -165,15 +165,15 @@ body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#07
 .kiseki-inner{position:relative;z-index:1}
 .kiseki-head{max-width:780px;margin:0 auto 28px;padding:0 24px}
 .kiseki-mask{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 13%,#000 87%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 13%,#000 87%,transparent 100%)}
-.kiseki-track{display:flex;gap:24px;padding:36px 0 24px;width:max-content;animation:kisekiScroll 200s linear infinite}
+.kiseki-track{display:flex;gap:24px;padding:36px 0 24px;width:max-content;animation:kisekiScroll 520s linear infinite}
 @keyframes kisekiScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.cloud-card{flex-shrink:0;position:relative;width:280px;background:rgba(255,255,255,0.12);border-radius:18px;padding:28px 16px 16px;box-shadow:0 5px 22px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(8px)}
-.cloud-card::before{content:'';position:absolute;background:rgba(255,255,255,0.12);border-radius:50%;width:44px;height:44px;top:-22px;left:12px;border:1px solid rgba(255,255,255,0.2)}
-.cloud-card::after{content:'';position:absolute;background:rgba(255,255,255,0.10);border-radius:50%;width:30px;height:30px;top:-14px;left:42px;border:1px solid rgba(255,255,255,0.2)}
-.cloud-name{font-size:11px;font-weight:700;color:#FFE59A;margin-bottom:7px;letter-spacing:.06em}
-.cloud-text{font-size:12px;color:rgba(255,255,255,0.85);line-height:1.8;overflow:hidden;display:-webkit-box;-webkit-line-clamp:8;-webkit-box-orient:vertical}
+.cloud-card{flex-shrink:0;position:relative;width:300px;background:rgba(255,255,255,0.82);border-radius:18px;padding:32px 18px 18px;box-shadow:0 6px 28px rgba(60,120,180,0.18);border:1px solid rgba(120,180,230,0.35);backdrop-filter:blur(4px)}
+.cloud-card::before{content:'';position:absolute;background:rgba(255,255,255,0.9);border-radius:50%;width:44px;height:44px;top:-22px;left:12px;border:1.5px solid rgba(120,180,230,0.4)}
+.cloud-card::after{content:'';position:absolute;background:rgba(255,255,255,0.8);border-radius:50%;width:30px;height:30px;top:-14px;left:42px;border:1.5px solid rgba(120,180,230,0.35)}
+.cloud-name{font-size:13px;font-weight:700;color:#1565C0;margin-bottom:8px;letter-spacing:.04em}
+.cloud-text{font-size:14.5px;color:rgba(20,50,90,0.88);line-height:1.9;overflow:hidden;display:-webkit-box;-webkit-line-clamp:8;-webkit-box-orient:vertical}
 .koinobori-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.cloud-avatar{position:absolute;top:-22px;left:12px;width:44px;height:44px;border-radius:50%;object-fit:cover;z-index:2;border:2px solid rgba(200,225,255,0.6)}
+.cloud-avatar{position:absolute;top:-22px;left:12px;width:44px;height:44px;border-radius:50%;object-fit:cover;z-index:2;border:2.5px solid rgba(80,150,220,0.7);box-shadow:0 2px 8px rgba(0,0,0,0.15)}
 @media(max-width:640px){.cloud-card{width:240px;padding:24px 12px 14px}}
 
 /* Footer */
