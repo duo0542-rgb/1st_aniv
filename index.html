@@ -166,27 +166,22 @@ body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#07
 .section-kiseki{padding:60px 0 50px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
 .kiseki-inner{position:relative;z-index:1}
 .kiseki-head{max-width:780px;margin:0 auto 28px;padding:0 24px}
-/* carousel */
-.kiseki-carousel{position:relative;max-width:1080px;margin:0 auto;padding:0 60px}
+.kiseki-carousel{position:relative;max-width:1040px;margin:0 auto;padding:0 56px}
 .kiseki-viewport{overflow:hidden;position:relative;border-radius:12px}
-.kiseki-stage{display:flex;align-items:flex-start;transition:transform .7s cubic-bezier(.25,.8,.25,1);will-change:transform}
-.kiseki-page{flex:0 0 100%;display:flex;gap:20px;justify-content:center;padding:44px 12px 28px;box-sizing:border-box;flex-wrap:nowrap}
-/* cloud card float-in when page becomes active */
-@keyframes cloudFloatIn{0%{opacity:0;transform:translateY(28px) scale(.94)}60%{opacity:1;transform:translateY(-5px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes cloudFloatOut{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-20px) scale(.96)}}
-.kiseki-page.entering .cloud-card{animation:cloudFloatIn .6s cubic-bezier(.22,.68,0,1.35) both}
-.kiseki-page.entering .cloud-card:nth-child(2){animation-delay:.1s}
-.kiseki-page.entering .cloud-card:nth-child(3){animation-delay:.2s}
-/* nav arrows */
-.kiseki-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.88);border:none;border-radius:50%;width:46px;height:46px;font-size:26px;cursor:pointer;box-shadow:0 3px 14px rgba(60,120,180,0.22);color:#1565C0;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s,box-shadow .2s}
+.kiseki-stage{display:flex;transition:transform .65s cubic-bezier(.25,.8,.25,1);will-change:transform}
+.kiseki-page{flex:0 0 100%;display:flex;gap:18px;justify-content:center;padding:36px 8px 24px;box-sizing:border-box;min-width:0}
+@keyframes cloudFloatIn{0%{opacity:0;transform:translateY(24px) scale(.95)}65%{opacity:1;transform:translateY(-4px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.kiseki-page.entering .cloud-card{animation:cloudFloatIn .55s cubic-bezier(.22,.68,0,1.35) both}
+.kiseki-page.entering .cloud-card:nth-child(2){animation-delay:.09s}
+.kiseki-page.entering .cloud-card:nth-child(3){animation-delay:.18s}
+.kiseki-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.88);border:none;border-radius:50%;width:44px;height:44px;font-size:24px;cursor:pointer;box-shadow:0 3px 14px rgba(60,120,180,0.22);color:#1565C0;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s,box-shadow .2s}
 .kiseki-arrow:hover{background:#fff;box-shadow:0 5px 20px rgba(60,120,180,0.35)}
 .kiseki-arrow-l{left:4px}
 .kiseki-arrow-r{right:4px}
-/* dots */
-.kiseki-dots{display:flex;justify-content:center;gap:10px;margin-top:18px}
-.kiseki-dot{width:10px;height:10px;border-radius:50%;background:rgba(100,170,230,0.35);border:none;cursor:pointer;padding:0;transition:background .3s,transform .3s}
+.kiseki-dots{display:flex;justify-content:center;gap:9px;margin-top:16px}
+.kiseki-dot{width:9px;height:9px;border-radius:50%;background:rgba(100,170,230,0.35);border:none;cursor:pointer;padding:0;transition:background .3s,transform .3s}
 .kiseki-dot.active{background:#1565C0;transform:scale(1.35)}
-.cloud-card{flex-shrink:0;position:relative;width:300px;max-width:calc(33% - 14px);background:rgba(255,255,255,0.82);border-radius:18px;padding:28px 16px 16px;box-shadow:0 6px 28px rgba(60,120,180,0.18);border:1px solid rgba(120,180,230,0.35);backdrop-filter:blur(4px)}
+.cloud-card{flex-shrink:0;position:relative;width:0;flex:1 1 0;min-width:0;max-width:300px;background:rgba(255,255,255,0.82);border-radius:18px;padding:28px 16px 16px;box-shadow:0 6px 28px rgba(60,120,180,0.18);border:1px solid rgba(120,180,230,0.35);backdrop-filter:blur(4px)}
 .cloud-card::before{content:'';position:absolute;background:rgba(255,255,255,0.9);border-radius:50%;width:44px;height:44px;top:-22px;left:12px;border:1.5px solid rgba(120,180,230,0.4)}
 .cloud-card::after{content:'';position:absolute;background:rgba(255,255,255,0.8);border-radius:50%;width:30px;height:30px;top:-14px;left:42px;border:1.5px solid rgba(120,180,230,0.35)}
 .cloud-name{font-size:15px;font-weight:700;color:#1565C0;margin-bottom:8px;letter-spacing:.04em}
@@ -875,15 +870,28 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
 })();
 
 (function(){
-  var stage   = document.getElementById('kisekiStage');
-  var pages   = Array.from(stage.querySelectorAll('.kiseki-page'));
-  var dotsEl  = document.getElementById('kisekiDots');
-  var prevBtn = document.getElementById('kisekiPrev');
-  var nextBtn = document.getElementById('kisekiNext');
-  var total   = pages.length;
-  var cur     = 0, timer, busy = false;
+  var viewport = document.querySelector('.kiseki-viewport');
+  var stage    = document.getElementById('kisekiStage');
+  var pages    = Array.from(stage.querySelectorAll('.kiseki-page'));
+  var dotsEl   = document.getElementById('kisekiDots');
+  var prevBtn  = document.getElementById('kisekiPrev');
+  var nextBtn  = document.getElementById('kisekiNext');
+  var total    = pages.length;
+  var cur      = 0, timer, busy = false;
 
-  // build dots
+  // ページ幅をピクセルで計算して各ページに設定
+  function setPageWidths() {
+    var w = viewport.offsetWidth;
+    pages.forEach(function(p){ p.style.flexBasis = w + 'px'; });
+    // 現在位置を再計算
+    stage.style.transition = 'none';
+    stage.style.transform = 'translateX(' + (-cur * viewport.offsetWidth) + 'px)';
+    setTimeout(function(){ stage.style.transition = ''; }, 20);
+  }
+  setPageWidths();
+  window.addEventListener('resize', setPageWidths);
+
+  // ドット生成
   pages.forEach(function(_,i){
     var d = document.createElement('button');
     d.className = 'kiseki-dot' + (i===0?' active':'');
@@ -892,30 +900,25 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
     dotsEl.appendChild(d);
   });
 
-  // trigger float-in on first page
-  pages[0].classList.add('entering');
+  // 初期ページのフロートイン
+  triggerEnter(pages[0]);
+
+  function triggerEnter(page){
+    page.classList.remove('entering');
+    void page.offsetWidth;
+    page.classList.add('entering');
+  }
 
   function goTo(n){
     if(busy || n === cur) return;
     busy = true;
-    var prev = cur;
     cur = (n + total) % total;
-
-    // slide stage
-    stage.style.transform = 'translateX(-' + (cur * 100) + '%)';
-
-    // float-in animation on incoming page
-    pages[cur].classList.remove('entering');
-    void pages[cur].offsetWidth; // reflow
-    pages[cur].classList.add('entering');
-
-    // update dots
+    stage.style.transform = 'translateX(' + (-cur * viewport.offsetWidth) + 'px)';
+    triggerEnter(pages[cur]);
     dotsEl.querySelectorAll('.kiseki-dot').forEach(function(d,i){
       d.classList.toggle('active', i===cur);
     });
-
-    // unlock after transition
-    setTimeout(function(){ busy = false; }, 750);
+    setTimeout(function(){ busy = false; }, 700);
   }
 
   function resetTimer(){
@@ -926,13 +929,12 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
   prevBtn.addEventListener('click', function(){ goTo((cur-1+total)%total); resetTimer(); });
   nextBtn.addEventListener('click', function(){ goTo((cur+1)%total); resetTimer(); });
 
-  // touch swipe
   var stX = 0;
-  stage.addEventListener('touchstart', function(e){ stX = e.touches[0].clientX; }, {passive:true});
+  stage.addEventListener('touchstart', function(e){ stX = e.touches[0].clientX; },{passive:true});
   stage.addEventListener('touchend', function(e){
     var dx = stX - e.changedTouches[0].clientX;
-    if(Math.abs(dx) > 50){ goTo(dx > 0 ? (cur+1)%total : (cur-1+total)%total); resetTimer(); }
-  }, {passive:true});
+    if(Math.abs(dx)>50){ goTo(dx>0?(cur+1)%total:(cur-1+total)%total); resetTimer(); }
+  },{passive:true});
 
   resetTimer();
 })();
