@@ -168,6 +168,11 @@ body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#07
 .kiseki-head{max-width:780px;margin:0 auto 28px;padding:0 24px}
 .kiseki-mask{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 13%,#000 87%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 13%,#000 87%,transparent 100%)}
 .kiseki-track{display:flex;gap:24px;padding:36px 0 24px;width:max-content;animation:kisekiScroll 520s linear infinite}
+.kiseki-speed{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px;font-size:13px;color:#1a4a6e}
+.kiseki-speed label{font-weight:600;letter-spacing:.04em}
+.kiseki-speed input[type=range]{-webkit-appearance:none;appearance:none;width:180px;height:6px;border-radius:3px;background:linear-gradient(to right,#1565C0 var(--val,50%),rgba(100,170,230,0.3) var(--val,50%));outline:none;cursor:pointer}
+.kiseki-speed input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#1565C0;box-shadow:0 2px 6px rgba(21,101,192,0.4);cursor:pointer}
+.kiseki-speed-label{min-width:36px;text-align:center;font-size:12px;color:#1565C0;font-weight:700}
 @keyframes kisekiScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .cloud-card{flex-shrink:0;position:relative;width:300px;background:rgba(255,255,255,0.82);border-radius:18px;padding:32px 18px 18px;box-shadow:0 6px 28px rgba(60,120,180,0.18);border:1px solid rgba(120,180,230,0.35);backdrop-filter:blur(4px)}
 .cloud-card::before{content:'';position:absolute;background:rgba(255,255,255,0.9);border-radius:50%;width:44px;height:44px;top:-22px;left:12px;border:1.5px solid rgba(120,180,230,0.4)}
@@ -862,6 +867,31 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
   prevBtn.addEventListener('click',function(){ goTo(cur-1); resetTimer(); });
   nextBtn.addEventListener('click',function(){ goTo(cur+1); resetTimer(); });
   resetTimer();
+})();
+
+(function(){
+  var track = document.querySelector('.kiseki-track');
+  var slider = document.getElementById('kisekiSpeed');
+  var label  = document.getElementById('kisekiSpeedLabel');
+  // 速度マップ: 1=最遅(900s) 10=最速(60s) 5=普通(520s)
+  var durations = [900,750,620,520,400,300,200,130,90,60];
+  var labels    = ['とても遅い','遅い','少し遅い','ふつう','少し速い','速い','かなり速い','速い','とても速い','最速'];
+
+  function applySpeed(val){
+    var idx = Math.min(Math.max(parseInt(val)-1, 0), 9);
+    var dur = durations[idx];
+    // アニメーションをリセットして再適用
+    track.style.animation = 'none';
+    void track.offsetWidth;
+    track.style.animation = 'kisekiScroll '+dur+'s linear infinite';
+    label.textContent = labels[idx];
+    // スライダー背景グラデーション更新
+    var pct = ((parseInt(val)-1)/9*100)+'%';
+    slider.style.setProperty('--val', pct);
+  }
+
+  slider.addEventListener('input', function(){ applySpeed(this.value); });
+  applySpeed(slider.value);
 })();
 
 </script>
