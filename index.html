@@ -189,6 +189,13 @@ body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#07
 .koinobori-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .cloud-avatar{position:absolute;top:-22px;left:12px;width:44px;height:44px;border-radius:50%;object-fit:cover;z-index:2;border:2.5px solid rgba(80,150,220,0.7);box-shadow:0 2px 8px rgba(0,0,0,0.15)}
 @media(max-width:640px){.cloud-card{width:240px;padding:24px 12px 14px}}
+#kcCounter{display:none;text-align:center;margin-top:14px;color:#1565C0;font-size:14px;font-weight:600}
+@media(max-width:640px){
+  .kc-page.is-active .cloud-card{display:none}
+  .kc-page.is-active .cloud-card.kc-card-active{display:block;width:85vw;max-width:300px;margin:0 auto}
+  .kc-dots{display:none}
+  #kcCounter{display:block}
+}
 
 /* Footer */
 .footer-wave{width:100%;display:block;margin-bottom:-2px}
@@ -671,6 +678,7 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
   <button class="kc-arrow kc-next" id="kcNext">&#8250;</button>
 </div>
 <div class="kc-dots" id="kcDots"></div>
+<div id="kcCounter"></div>
   </div>
 </div>
 
@@ -870,54 +878,99 @@ footer{background:radial-gradient(ellipse at 20% 30%,rgba(255,255,255,0.55) 0%,t
 
 
 (function(){
-  var stage  = document.getElementById('kcStage');
-  var dotsEl = document.getElementById('kcDots');
-  var prev   = document.getElementById('kcPrev');
-  var next   = document.getElementById('kcNext');
-  var pages  = Array.from(stage.querySelectorAll('.kc-page'));
-  var total  = pages.length, cur = 0, busy = false, timer;
+  var stage    = document.getElementById('kcStage');
+  var dotsEl   = document.getElementById('kcDots');
+  var counter  = document.getElementById('kcCounter');
+  var prev     = document.getElementById('kcPrev');
+  var next     = document.getElementById('kcNext');
+  var pages    = Array.from(stage.querySelectorAll('.kc-page'));
+  var allCards = Array.from(stage.querySelectorAll('.cloud-card'));
+  var busy = false, timer, cur = 0;
 
-  // ドット生成
-  pages.forEach(function(_,i){
+  function isMobile(){ return window.innerWidth <= 640; }
+
+  pages.forEach(function(_, i){
     var d = document.createElement('button');
-    d.className = 'kc-dot'+(i===0?' active':'');
+    d.className = 'kc-dot' + (i === 0 ? ' active' : '');
     d.addEventListener('click', function(){ goTo(i); resetTimer(); });
     dotsEl.appendChild(d);
   });
 
-  // 最初のページを表示
-  pages[0].classList.add('is-active');
+  function initView(){
+    pages.forEach(function(p){ p.classList.remove('is-active'); });
+    allCards.forEach(function(c){ c.classList.remove('kc-card-active'); });
+    cur = 0;
+    pages[0].classList.add('is-active');
+    if(isMobile()){
+      allCards[0].classList.add('kc-card-active');
+      counter.textContent = '1 / ' + allCards.length;
+    } else {
+      dotsEl.querySelectorAll('.kc-dot').forEach(function(d, i){ d.classList.toggle('active', i === 0); });
+    }
+  }
 
   function goTo(n){
-    if(busy || n===cur) return;
-    busy = true;
-    pages[cur].classList.remove('is-active');
-    cur = (n+total)%total;
-    pages[cur].classList.remove('is-active');
-    void pages[cur].offsetWidth; // アニメーションリセット
-    pages[cur].classList.add('is-active');
-    dotsEl.querySelectorAll('.kc-dot').forEach(function(d,i){
-      d.classList.toggle('active', i===cur);
-    });
-    setTimeout(function(){ busy=false; }, 600);
+    if(busy) return;
+    if(isMobile()){
+      var total = allCards.length;
+      var nCard = (n + total) % total;
+      if(nCard === cur) return;
+      busy = true;
+      var oldPage = Math.floor(cur / 3);
+      var newPage = Math.floor(nCard / 3);
+      allCards[cur].classList.remove('kc-card-active');
+      if(oldPage !== newPage){
+        pages[oldPage].classList.remove('is-active');
+        void pages[newPage].offsetWidth;
+        pages[newPage].classList.add('is-active');
+      }
+      cur = nCard;
+      allCards[cur].classList.add('kc-card-active');
+      counter.textContent = (cur + 1) + ' / ' + total;
+    } else {
+      var total = pages.length;
+      if(n === cur) return;
+      busy = true;
+      pages[cur].classList.remove('is-active');
+      cur = (n + total) % total;
+      void pages[cur].offsetWidth;
+      pages[cur].classList.add('is-active');
+      dotsEl.querySelectorAll('.kc-dot').forEach(function(d, i){ d.classList.toggle('active', i === cur); });
+    }
+    setTimeout(function(){ busy = false; }, 600);
   }
 
   function resetTimer(){
     clearInterval(timer);
-    timer = setInterval(function(){ goTo((cur+1)%total); }, 7000);
+    timer = setInterval(function(){
+      goTo(isMobile() ? (cur + 1) % allCards.length : (cur + 1) % pages.length);
+    }, 7000);
   }
 
-  prev.addEventListener('click', function(){ goTo((cur-1+total)%total); resetTimer(); });
-  next.addEventListener('click', function(){ goTo((cur+1)%total); resetTimer(); });
+  prev.addEventListener('click', function(){
+    goTo(isMobile() ? (cur - 1 + allCards.length) % allCards.length : (cur - 1 + pages.length) % pages.length);
+    resetTimer();
+  });
+  next.addEventListener('click', function(){
+    goTo(isMobile() ? (cur + 1) % allCards.length : (cur + 1) % pages.length);
+    resetTimer();
+  });
 
-  // スワイプ対応
-  var sx=0;
-  stage.addEventListener('touchstart',function(e){ sx=e.touches[0].clientX; },{passive:true});
-  stage.addEventListener('touchend',function(e){
-    var dx=sx-e.changedTouches[0].clientX;
-    if(Math.abs(dx)>50){ goTo(dx>0?(cur+1)%total:(cur-1+total)%total); resetTimer(); }
-  },{passive:true});
+  var sx = 0;
+  stage.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
+  stage.addEventListener('touchend', function(e){
+    var dx = sx - e.changedTouches[0].clientX;
+    if(Math.abs(dx) > 50){
+      goTo(dx > 0
+        ? (isMobile() ? (cur+1) % allCards.length : (cur+1) % pages.length)
+        : (isMobile() ? (cur-1+allCards.length) % allCards.length : (cur-1+pages.length) % pages.length));
+      resetTimer();
+    }
+  }, {passive:true});
 
+  window.addEventListener('resize', function(){ clearInterval(timer); initView(); resetTimer(); });
+
+  initView();
   resetTimer();
 })();
 
